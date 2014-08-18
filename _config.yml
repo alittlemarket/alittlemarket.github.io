@@ -2,8 +2,8 @@
 title: AlittleCode
 email: tech@alittlemarket.fr
 description: "The alittlemarket technical team publish here articles related to software development: Symfony, PHP, MySQL, Nginx, Varnish, Redis ..."
-baseurl: "http://alittlemarket.github.io/"
-url: "http://alittlemarket.github.io/"
+baseurl: "" # empty to allow site to be runned via 127.0.0.1:4000
+url: "http://alittlemarket.github.io"
 twitter_username: AlittleMarket
 github_username:  alittlemarket
 
