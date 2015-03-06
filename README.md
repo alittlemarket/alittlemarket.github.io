@@ -1,1 +1,3 @@
-[alittlemarket.github.io](http://alittlemarket.github.io)
+# [Code paper scissors](http://codepaperscissors.com)
+
+Etsy France's tech blog
