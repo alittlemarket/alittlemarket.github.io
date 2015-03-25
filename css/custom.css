@@ -18,30 +18,32 @@ a:hover {
 /* Site header */
 
 .site-header {
-    border-top: 5px solid #000;
+    border: none;
     background-color: #000;
     background-repeat: repeat-x;
-    background-position: center 31px;
+    background-position: center;
     border-bottom: 1px solid #e8e8e8;
-    padding-top: 103px;
+    height:350px;
     color: white;
 }
 
 .site-header-separation {
     background-color: #1A1A1A;
+    background-color: rgba(26, 26, 46, 0.3);
 }
 
 .site-header-logo {
     position: fixed;
-    left: 50%;
-    top: 10px;
+    left: 7%;
+    top: 70px;
     width: 240px;
     height: 240px;
+/*
     margin-left: -120px;
+*/
     overflow: hidden;
     z-index: 99;
     border-radius: 50%;
-    border: 3px solid #1A1A1A;
 }
 .site-header-logo .logo {
     display: block;
@@ -52,7 +54,7 @@ a:hover {
     height: 240px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: #1A1A1A;
+    background-color: transparent;
 }
 
 
