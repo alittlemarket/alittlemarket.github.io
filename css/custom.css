@@ -6,6 +6,12 @@ a, a:visited {
 a:hover {
     color: #459189;
 }
+.hide-text {
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+    text-indent: -99999px;
+}
 
 .site-title, .site-title:hover, .site-title:visited {
     color: white;
@@ -25,6 +31,8 @@ a:hover {
     border-bottom: 1px solid #e8e8e8;
     height:350px;
     color: white;
+    position: relative;
+    z-index: 10;
 }
 
 .site-header-separation {
@@ -32,44 +40,51 @@ a:hover {
     background-color: rgba(26, 26, 46, 0.3);
 }
 
-.site-header-logo {
+/* Logo */
+
+.site-header-logo,
+.site-header-logo .logo,
+.site-header-bglogo:before {
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+.site-header-logo, .site-header-bglogo:before {
     position: fixed;
-    left: 7%;
-    top: 70px;
-    width: 240px;
-    height: 240px;
-/*
-    margin-left: -120px;
-*/
-    overflow: hidden;
-    z-index: 99;
+    left: 40px;
+    top: 40px;
     border-radius: 50%;
 }
+
+.site-header-logo {
+    z-index: 99;
+}
 .site-header-logo .logo {
-    display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 240px;
-    height: 240px;
+    top: 3px;
+    left: 3px;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: transparent;
 }
+.site-header-bglogo:before {
+    content: '';
+    z-index: 1;
+    background-color: #1A1A1A;
+    border: 2px solid #1A1A1A;
+}
+/* END Logo */
 
 
+
+.site-nav, .site-title, .site-title:hover, .site-title:visited {
+    line-height: 35px;
+}
+.site-title, .site-title:hover, .site-title:visited {
+    font-size: 22px;
+    letter-spacing: 5px;
+}
 
 /* Post styles */
 /* ----------------------------------------------------------*/
-
-.is_post .site-header-logo {
-    left: 10px;
-    top: 10px;
-    width: 96px;
-    height: 96px;
-    margin-left: 0;
-}
-.is_post .site-header-logo .logo {
-    width: 96px;
-    height: 96px;
-}
