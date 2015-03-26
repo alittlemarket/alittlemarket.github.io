@@ -15,3 +15,104 @@ permalink: pretty
 # blog cover
 cover: "/assets/images/img1.jpeg"
 logo: "/assets/images/logoblanc.png"
+
+# blog authors
+authors:
+  antoine:
+    name: Antoine Froger
+    display_name: Antoine
+    avatar: https://avatars0.githubusercontent.com/u/3509631?v=3&s=400
+    email: antoine@alittlemarket.fr
+    twitter: __tooni__
+    github: antfroger
+  celine:
+    name: Celine Coelho
+    display_name: Celine
+    avatar: https://avatars0.githubusercontent.com/u/8169949?v=3&s=400
+    email: celine@alittlemarket.fr
+    twitter: _cissou_
+    github: alittleceline
+  kevin:
+    name: Kevin Aboudarham
+    display_name: Kevin
+    avatar: https://avatars1.githubusercontent.com/u/4158775?v=3&s=400
+    email: kevin@alittlemarket.fr
+    twitter: darame07
+    github: darame07ALM
+  jonathan:
+    name: Jonathan Bouaziz
+    display_name: Jonathan
+    avatar: https://avatars3.githubusercontent.com/u/8112574?v=3&s=400
+    email: jonathan@alittlemarket.fr
+    twitter: __tooni__
+    github: JonathanBouaziz
+  laurent:
+    name: Laurent Callarec
+    display_name: Laurent
+    avatar: https://avatars0.githubusercontent.com/u/6905322?v=3&s=400
+    email: laurent@alittlemarket.fr
+    twitter: sitesAlittle
+    github: laurent-callarec
+  loic:
+    name: Loic Duvernay
+    display_name: Loic
+    avatar: https://avatars3.githubusercontent.com/u/1436805?v=3&s=400
+    email: loic@alittlemarket.fr
+    twitter: sitesAlittle
+    github: Incubart
+  qikai:
+    name: Qikai Gu
+    display_name: Qikai
+    avatar: https://avatars2.githubusercontent.com/u/7137183?v=3&s=400
+    email: qikai@alittlemarket.fr
+    twitter: QikaiGu
+    github: Qikai-ALM
+  romaina:
+    name: Romain Ardiet
+    display_name: Romain
+    avatar: https://avatars2.githubusercontent.com/u/2420675?v=3&s=400
+    email: romaina@alittlemarket.fr
+    twitter: RomainArdiet
+    github: Romibuzi
+  romainb:
+    name: Romain Briand
+    display_name: Romain
+    avatar: https://avatars0.githubusercontent.com/u/4158931?v=3&s=400
+    email: romain@alittlemarket.fr
+    twitter: truquemucheu
+    github: romain-alm
+  sylvaina:
+    name: Sylvain Artois
+    display_name: Sylvain
+    avatar: https://avatars2.githubusercontent.com/u/6448828?v=3&s=400
+    email: sylvaina@alittlemarket.fr
+    twitter: dye_pop
+    github: sylvaina-alm
+  sylvainm:
+    name: Sylvain Mauduit
+    display_name: Sylvain
+    avatar: https://avatars3.githubusercontent.com/u/545340?v=3&s=400
+    email: sylvain@alittlemarket.fr
+    twitter: Swop
+    github: Swop
+  thierry:
+    name: Thierry Gerbeau
+    display_name: Thierry
+    avatar: https://avatars0.githubusercontent.com/u/4618811?v=3&s=400
+    email: thierry@alittlemarket.fr
+    twitter: sitesAlittle
+    github: thierrygerbeau
+  vincent:
+    name: Vincent Paulin
+    display_name: Vincent
+    avatar: https://avatars0.githubusercontent.com/u/4487845?v=3&s=400
+    email: vincent@alittlemarket.fr
+    twitter: genokilller
+    github: VincentPaulinALM
+  zouhir:
+    name: Zouhir Bahij
+    display_name: Antoine
+    avatar: https://avatars0.githubusercontent.com/u/6905145?v=3&s=400
+    email: zouhir@alittlemarket.fr
+    twitter: zbahij
+    github: zouhirB

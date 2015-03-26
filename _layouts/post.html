@@ -8,16 +8,24 @@
 {% include header.html %}
 
 <div class="page-content">
+    {% assign author = site.authors[page.author] %}
     <div class="wrap">
         <div class="post">
-            <header class="post-header">
+        <article class="post-content site-header-bglogo">
+            <header>
                 <h1>{{ page.title }}</h1>
-                <p class="meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+                <div class="byline clearfix">
+                    <img class="left" src="{{ author.avatar }}" width="40" height="40" alt="{{ author.name }}" />
+                    by {{ author.display_name }}
+                    <p class="date">
+                        <span class="month">{{ page.date | date: '%b' }}</span>
+                        <span class="day">{{ page.date | date: '%d' }}</span>
+                        <span class="year">{{ page.date | date: '%Y' }}</span>
+                    </p>
+                </div> <!-- /.byline -->
             </header>
-
-            <article class="post-content site-header-bglogo">
                 {{ content }}
-            </article>
+        </article>
         </div>
     </div>
 </div>
@@ -26,3 +34,4 @@
 
 </body>
 </html>
+

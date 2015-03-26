@@ -13,8 +13,48 @@ a:hover {
     text-indent: -99999px;
 }
 
+.left {
+    float: left;
+}
+.right{
+    float: right;
+}
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.clearfix:after {
+    clear: both;
+}
+.clear {
+    clear: both;
+}
+
+
 .site-title, .site-title:hover, .site-title:visited {
     color: white;
+}
+
+
+/* Colors */
+/* ----------------------------------------------------------*/
+pre, code,
+.post pre, .post code {
+    background-color: #E8E8E8;
+    overflow: scroll;
+}
+pre {
+    border: 1px solid #C9CDCA;
+    font-size: 0.8em;
+    padding: 0.5em;
+}
+.site-nav .page-link {
+    color: #fff;
 }
 
 
@@ -78,13 +118,50 @@ a:hover {
 
 
 
+/* Font */
 .site-nav, .site-title, .site-title:hover, .site-title:visited {
-    line-height: 35px;
+    line-height: 25px;
 }
 .site-title, .site-title:hover, .site-title:visited {
-    font-size: 22px;
+    font-size: 15px;
     letter-spacing: 5px;
 }
 
+/* Page */
+.page-content {
+    padding: 10px 0
+}
+
+
 /* Post styles */
 /* ----------------------------------------------------------*/
+.post-content h1,
+.post-content .post-link,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6,
+.posts .post-link {
+    margin: 1.5em 0;
+    display: block;
+}
+
+.post-content header {
+    margin-top: 0;
+}
+.post-content h1,
+.posts .h1,
+.posts .post-link {
+    font-size: 2em;
+}
+.post-content .byline img {
+    margin-right: 10px;
+}
+.post-content .date {
+    font-size: 0.9em;
+}
+
+/* Syntax highlighting styles */
+/* ----------------------------------------------------------*/
+.highlight .s2 { color: #9D4E6D;} /* Literal.String.Double */
