@@ -190,6 +190,11 @@ pre {
     }
 }
 @media screen and (max-width: 768px) {
+    .site-header {
+        height: auto;
+        min-height: 160px;
+        margin-bottom: 100px;
+    }
     .page-content .wrap {
         margin: 0 auto;
         zoom: 1;
@@ -216,9 +221,12 @@ pre {
     .site-header-bglogo:before {
         display: none;
     }
-
 }
+
 @media screen and (max-width: 480px) {
+    .site-header-logo {
+        top: 53px;
+    }
     .site-header {
         background-image: none !important;
     }
