@@ -36,25 +36,23 @@ a:hover {
 }
 
 
-.site-title, .site-title:hover, .site-title:visited {
-    color: white;
-}
-
-
 /* Colors */
 /* ----------------------------------------------------------*/
 pre, code,
 .post pre, .post code {
     background-color: #E8E8E8;
     overflow: scroll;
+    border: 1px solid #C9CDCA;
+    font-size: 13px;
 }
 pre {
-    border: 1px solid #C9CDCA;
-    font-size: 0.8em;
     padding: 0.5em;
 }
-.site-nav .page-link {
-    color: #fff;
+pre code {
+    border: none;
+}
+code {
+    padding: 1px 5px;
 }
 
 
@@ -70,8 +68,8 @@ pre {
     background-position: center;
     background-size: 100%;
     border-bottom: 1px solid #e8e8e8;
-    height:350px;
-    color: white;
+    height: 350px;
+    color: black;
     position: relative;
     z-index: 10;
     -webkit-box-shadow:inset 0 0 100px 100px rgba(0,0,0,0.4);
@@ -80,7 +78,7 @@ pre {
 
 .site-header-separation {
     background-color: #1A1A1A;
-    background-color: rgba(26, 26, 46, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Logo */
@@ -95,8 +93,8 @@ pre {
 
 .site-header-logo, .site-header-bglogo:before {
     position: fixed;
-    left: 40px;
-    top: 40px;
+    left: 43px;
+    top: 85px;
     border-radius: 50%;
 }
 
@@ -122,13 +120,19 @@ pre {
 
 
 /* Font */
-.site-nav, .site-title, .site-title:hover, .site-title:visited {
+.site-title,
+.site-title:hover,
+.site-title:visited,
+.site-nav .page-link {
+    color: black;
+    font-size: 15px;
+    letter-spacing: 1px;
     line-height: 25px;
 }
-.site-title, .site-title:hover, .site-title:visited {
-    font-size: 15px;
-    letter-spacing: 5px;
+.site-nav {
+    line-height: 25px;
 }
+
 
 /* Page */
 .page-content {
@@ -161,6 +165,7 @@ pre {
 .posts .h1,
 .posts .post-link {
     font-size: 2em;
+    letter-spacing: -2px;
 }
 
 .post-content .byline {
