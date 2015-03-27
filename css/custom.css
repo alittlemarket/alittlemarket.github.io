@@ -44,15 +44,17 @@ pre, code,
     overflow: scroll;
     border: 1px solid #C9CDCA;
     font-size: 13px;
+    border-radius: 3px;
 }
 pre {
-    padding: 0.5em;
-}
-pre code {
-    border: none;
+    padding: 8px 12px;
 }
 code {
     padding: 1px 5px;
+}
+pre code {
+    border: none;
+    padding: 0;
 }
 
 
@@ -197,8 +199,8 @@ code {
 @media screen and (max-width: 768px) {
     .site-header {
         height: auto;
-        min-height: 160px;
-        margin-bottom: 100px;
+        min-height: 177px;
+        margin-bottom: 70px;
     }
     .page-content .wrap {
         margin: 0 auto;
@@ -229,11 +231,12 @@ code {
 }
 
 @media screen and (max-width: 480px) {
-    .site-header-logo {
-        top: 53px;
-    }
     .site-header {
         background-image: none !important;
+        min-height: 160px;
+    }
+    .site-header-logo {
+        top: 53px;
     }
     .site-nav .page-link {
         color: #5ab5ab;

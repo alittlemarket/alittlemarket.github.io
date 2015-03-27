@@ -6,8 +6,18 @@ categories: jekyll update
 tags: [alittlemarket, team]
 author: celine
 ---
-{% for author in site.authors %}
-  {{ author.name }} -- {{ author.email }}
+
+Meet the ALM team !
+
+{% for members in site.authors %}
+{% for member in members %}
+
+{% if forloop.index == 2 %}
+<img src="{{ member.avatar }}" width="50" height="50" alt="{{ member.github }}" />
+{{ member.name }}
+{% endif %}
+
+{% endfor %}
 {% endfor %}
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve --watch`, which launches a web server and auto-regenerates your site when a file is updated.
