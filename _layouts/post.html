@@ -1,15 +1,37 @@
----
-layout: default
----
-<div class="post">
+<!DOCTYPE html>
+<html>
 
-  <header class="post-header">
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-  </header>
+{% include head.html %}
 
-  <article class="post-content">
-  {{ content }}
-  </article>
+<body class="is_post">
 
+{% include header.html %}
+
+<div class="page-content">
+    {% assign author = site.authors[page.author] %}
+    <div class="wrap">
+        <div class="post">
+        <article class="post-content site-header-bglogo">
+            <header>
+                <h1>{{ page.title }}</h1>
+                <div class="byline clearfix">
+                    <img class="left" src="{{ author.avatar }}" width="40" height="40" alt="{{ author.name }}" />
+                    by {{ author.display_name }}
+                    <p class="date">
+                        <span class="month">{{ page.date | date: '%b' }}</span>
+                        <span class="day">{{ page.date | date: '%d' }}</span>
+                        <span class="year">{{ page.date | date: '%Y' }}</span>
+                    </p>
+                </div> <!-- /.byline -->
+            </header>
+                {{ content }}
+        </article>
+        </div>
+    </div>
 </div>
+
+{% include footer.html %}
+
+</body>
+</html>
+
