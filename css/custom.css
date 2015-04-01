@@ -50,6 +50,10 @@ a:hover {
     text-align: right;
 }
 
+.mute {
+    color: #aaa;
+}
+
 /* Spacing */
 .spaced-top {
     margin-top: 1em;
@@ -81,6 +85,15 @@ a:hover {
 }
 .padded-all {
     padding: 1em;
+}
+
+/* Lists */
+
+ul.inline li {
+    display: inline-block;
+}
+ul.inline.spaced li {
+    padding-right: 0.9em;
 }
 
 /* Colors */
@@ -244,6 +257,11 @@ pre code {
 }
 .post-content table tr + tr {
     border-top: 1px solid #ddd;
+}
+
+.post-content ul.chevron_next li + li:before {
+    content: "\00bb" ;
+    margin-right: 0.9em;
 }
 
 /* Syntax highlighting styles */
