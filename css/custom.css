@@ -13,11 +13,15 @@ a:hover {
     text-indent: -99999px;
 }
 
+/* Layout and positionning */
 .left {
     float: left;
 }
 .right{
     float: right;
+}
+.floatnone {
+    float: none;
 }
 .clearfix {
     *zoom: 1;
@@ -35,6 +39,49 @@ a:hover {
     clear: both;
 }
 
+/* Text */
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+
+/* Spacing */
+.spaced-top {
+    margin-top: 1em;
+}
+.spaced-right{
+    margin-right: 1em;
+}
+.spaced-bottom {
+    margin-bottom: 1em;
+}
+.spaced-left {
+    margin-left: 1em;
+}
+.spaced-all {
+    margin: 1em;
+}
+
+.padded-top {
+    padding-top: 1em;
+}
+.padded-right{
+    padding-right: 1em;
+}
+.padded-bottom {
+    padding-bottom: 1em;
+}
+.padded-left {
+    padding-left: 1em;
+}
+.padded-all {
+    padding: 1em;
+}
 
 /* Colors */
 /* ----------------------------------------------------------*/
