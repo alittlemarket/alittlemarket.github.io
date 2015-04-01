@@ -230,6 +230,21 @@ pre code {
 .post-content .date {
     font-size: 0.9em;
 }
+.post-content table {
+    border: 1px solid #ddd;
+}
+.post-content table td {
+    padding: 5px 1em;
+}
+.post-content table td {
+    padding: 5px 1em;
+}
+.post-content table td + td {
+    border-left: 1px solid #ddd;
+}
+.post-content table tr + tr {
+    border-top: 1px solid #ddd;
+}
 
 /* Syntax highlighting styles */
 /* ----------------------------------------------------------*/
