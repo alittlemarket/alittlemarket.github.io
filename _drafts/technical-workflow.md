@@ -3,7 +3,8 @@ layout: post
 title:  "The technical workflow of Etsy France"
 date:   2015-02-23 13:55:00
 categories: workflow
-tags: workflow jira github pr review
+tags: [workflow, jira, github, pr, review]
+author: antoine
 ---
 
 Here at Etsy France we tried several organisations.  
