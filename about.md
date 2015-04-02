@@ -15,8 +15,8 @@ Meet the ALM team !
 {% for member in members %}
 
 {% if forloop.index == 2 %}
-{:.d-iblock.padded-all.text-center.about-team-member}
-<img class="d-block spaced-auto spaced-bottom" src="{{ member.avatar }}" width="50" height="50" alt="{{ member.github }}" />
+{:.d-iblock.padded-bottom.spaced-top.text-center.about-team-member}
+<img class="d-block spaced-auto spaced-bottom" src="{{ member.avatar }}" width="100" height="100" alt="{{ member.github }}" />
 [{{ member.name }}](https://github.com/{{ member.github }})
 {% endif %}
 

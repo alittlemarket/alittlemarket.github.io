@@ -255,6 +255,9 @@ pre code {
 .about-team-member {
     width: 20%;
 }
+.about-team-member img {
+    border-radius: 50%;
+}
 
 @media screen and (max-width: 1300px) {
     .page-content .wrap {
@@ -295,6 +298,10 @@ pre code {
     .site-header-bglogo:before {
         display: none;
     }
+    .about-team-member {
+        width: 32%;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -307,5 +314,8 @@ pre code {
     }
     .site-nav .page-link {
         color: #5ab5ab;
+    }
+    .about-team-member {
+        width: 49%;
     }
 }
