@@ -38,6 +38,15 @@ a:hover {
 .clear {
     clear: both;
 }
+.d-block {
+    display: block;
+}
+.d-iblock {
+    display: inline-block;
+}
+.d-inline{
+    display: inline;
+}
 
 /* Text */
 .text-center {
@@ -65,6 +74,10 @@ a:hover {
 }
 .spaced-all {
     margin: 1em;
+}
+.spaced-auto {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .padded-top {
@@ -235,6 +248,13 @@ pre code {
 /* ----------------------------------------------------------*/
 .highlight .s2 { color: #9D4E6D;} /* Literal.String.Double */
 
+
+
+/* About page */
+/* ----------------------------------------------------------*/
+.about-team-member {
+    width: 20%;
+}
 
 @media screen and (max-width: 1300px) {
     .page-content .wrap {
