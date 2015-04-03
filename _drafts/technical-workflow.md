@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The technical workflow at Etsy France"
+title:  "The technical workflow at Etsy France (Part 1)"
 date:   2015-02-23 13:55:00
 categories: workflow
 tags: [workflow, jira, github, pr, review]
@@ -15,7 +15,7 @@ Last year, we decided to completely change our work habits.
 
 We went from one big team (basically the entire company) to 6 smaller ones, each composed of up to 7 people with tech and non-tech backgrounds.
 
-Why so many teams?  
+*Why so many teams?*  
 Well, simply because as our website grew, our tech team did and regular tech meetings with 10+ people are just boring.
 
 But more importantly, it allowed each of our departments to have their projects in their hands and the means to move forward by managing their own timeline.  
@@ -35,7 +35,7 @@ Each task in those iteration is going through 5 different states represented by 
 This is how it works :
 
 - To do: A task that will be done in the current sprint but yet to begin
-- Waiting: More details are needed in order to begin/continue this task
+- Waiting: More details are needed in order to begin/continue this task (optional step)
 - In progress: Development is in progress
 - Should be reviewed/tested: Development is finished but the task should be reviewed and tested by another developer or project member
 - Done: Task deployed and tested in production
@@ -44,7 +44,7 @@ This is how it works :
 
 Git and GitHub are fully integrated to our workflow.  
 The GitHub integration in Jira is very useful and offers an overview of our past/current/future developments in a single spot.  
-To use this interaction between these tools, we use the "DVCS Accounts" component in Jira which allows you to link your GitHub account directly in Jira. You can select the repositories you wish to link or choose future repositories to auto-link.
+To use this interaction between these tools, we use the [DVCS][dvcs] plugin in Jira which allows you to link your GitHub account directly in Jira. You can select the repositories you wish to link or choose future repositories to auto-link.
 
 Then, a connection between Jira and GitHub is automatically created when:
 
@@ -99,10 +99,14 @@ Each pull request must have one <img src="https://assets-cdn.github.com/images/i
 
 **You did it !**
 
-When the pull request has been validated, it can safely be merged and deployed to a pre-production environment for a last safety check, and then to production.
+When the pull request has been validated, it can safely be merged and deployed to a pre-production environment for a last safety check, and then to production.  
+This is another step in our workflow.
+
+*To be continued...*
 
 
 [jira]: https://www.atlassian.com/software/jira
 [github]: https://github.com/
 [hipchat]: https://www.hipchat.com/
 [travis]: https://travis-ci.com/
+[dvcs]: https://marketplace.atlassian.com/plugins/com.atlassian.jira.plugins.jira-bitbucket-connector-plugin
