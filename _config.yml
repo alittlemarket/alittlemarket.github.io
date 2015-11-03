@@ -32,6 +32,13 @@ authors:
     email: celine@alittlemarket.fr
     twitter: _cissou_
     github: alittleceline
+  gary:
+    name: Gary Dameme
+    display_name: Gary
+    avatar: https://avatars3.githubusercontent.com/u/6573529?v=3&s=400
+    email: gary@alittlemarket.fr
+    twitter: sitesAlittle
+    github: gawy-d
   kevin:
     name: Kevin Aboudarham
     display_name: Kevin
@@ -60,6 +67,20 @@ authors:
     email: loic@alittlemarket.fr
     twitter: sitesAlittle
     github: Incubart
+  matthieu:
+    name: Matthieu Rollin
+    display_name: Matthieu
+    avatar: https://avatars2.githubusercontent.com/u/2761725?v=3&s=400
+    email: matthieu@alittlemarket.fr
+    twitter: sitesAlittle
+    github: matthieu-rollin
+  nick:
+    name: Nick Jouannem
+    display_name: Nick
+    avatar: https://avatars2.githubusercontent.com/u/960935?v=3&s=400
+    email: nick@alittlemarket.fr
+    twitter: njouannem
+    github: Nickology
   qikai:
     name: Qikai Gu
     display_name: Qikai
@@ -104,7 +125,7 @@ authors:
     github: VincentPaulinALM
   zouhir:
     name: Zouhir Bahij
-    display_name: Antoine
+    display_name: Zouhir
     avatar: https://avatars0.githubusercontent.com/u/6905145?v=3&s=400
     email: zouhir@alittlemarket.fr
     twitter: zbahij
