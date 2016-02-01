@@ -11,6 +11,7 @@ github_username:  alittlemarket
 markdown: kramdown
 permalink: pretty
 
+excerpt_separator: "" # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
 
 # blog cover
 cover: "/assets/images/img4.jpg"
@@ -88,7 +89,7 @@ authors:
     email: qikai@alittlemarket.fr
     twitter: QikaiGu
     github: Qikai-ALM
-  romaina:
+  romain:
     name: Romain Ardiet
     display_name: Romain
     avatar: https://avatars2.githubusercontent.com/u/2420675?v=3&s=400
