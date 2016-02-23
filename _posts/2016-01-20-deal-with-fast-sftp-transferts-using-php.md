@@ -1,19 +1,19 @@
 ---
 layout: post
-title:  "Deal with fast SFTP transferts using PHP"
+title:  "Fast SFTP transferts using PHP"
 date:   2016-01-20
 categories: workflow
 tags: [php, sftp, rasmus, phpseclib, php-ssh2]
 author: romain
 ---
 
-Recently, I've faced a tricky problem at Etsy France.
-The project was to implement some CSV file transfers of useful data between us and our email provider (both upload and download).
-These transfers were performed by a cron task each day and the protocol used for these transfers was SFTP.
+Recently, I've faced a tricky problem at Etsy France that implied two implementations that gave counter-intuitive performances. 
 
-So I've searched how it was possible to implement SFTP transfers inside a PHP cron task, and I remember the [PHP-SSH2](http://php.net/manual/en/book.ssh2.php) extension, which provides a useful API to implements that.
+Here is how it started: we needed to daily upload and download CSV files from our email provider and these transfers had to be using the [SFTP protocol](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol).
 
-So, let's start the work with the help of the extension, here is the code i've implemented for a POC :
+While I was looking how it was possible to implement SFTP transfers inside a PHP cron task, 
+I remembered the existence of a PHP extension - [PHP-SSH2](http://php.net/manual/en/book.ssh2.php), 
+which was based on the [libssh2 C binding](http://www.libssh2.org/), and wrote the following code for a POC:
 
 {% highlight php %}
 <?php
@@ -49,12 +49,9 @@ fclose($dest);
 
 {% endhighlight %}
 
-Then I've tested this code, with a file of ~10MB between my local machine and the remote server, and I quickly found that the transfer appears to be slow.
+I've tested this code with a file of ~10MB between my local machine and the remote server, and quickly found that the transfer - over a fiber connection - appeared to a bit sluggish : 20 seconds.
 
-Indeed before running the script, I've tested the same transfer with [FileZilla](https://filezilla-project.org/) and with my current fiber connection,
-FileZilla said the transfert was completed in less than 2 seconds.
-
-I've ensured the transfert was slow with `time` utility :
+To confirm that intuition, I ran the same transfer again checking if we had a network congestion issue or using the `time` utility trying to figure out what was the cause of that duration.
 
 {% highlight bash %}
 $ /usr/local/bin/time -p php sftp_ssh2.php
@@ -62,28 +59,31 @@ real 20.72
 user 0.16
 sys 0.16
 {% endhighlight %}
+ 
+I finally compared it to one done with [FileZilla](https://filezilla-project.org/) and it was completed in less than 2 seconds.
 
-So, the transfert with the PHP script is 10 times slower than the transfert with FileZilla client in same conditions (same destination server, same internet connection).
+I did another test by launching the same script on the EC2 instance where the upload was planned to be run 
+in production but it gave substantially the same difference, between 9 and 10 times slower than 
+the `sftp` command with ~10Mb File.
 
-I did another test by launching the same script on the EC2 instance where the script was planned to be runned once in production, and it was the same result, between 9 and 10 times slower than `sftp` command with ~10Mb File.
+The transfer with the PHP script was about 10 times slower than ones with other SFTP clients in the
+same conditions (same destination server, same Internet connection).
 
-I know that using SFTP protocol from PHP with PHP-SSH2 extension can have overhead compared to pure `sftp` command, because the extension uses the [libssh2](http://www.libssh2.org/) underlying library.
-So there are 3 layers :
+That performance was really unexpected since the extension is supposed to be a simple binding over a C implementation,
+and even if it has to convert PHP data structure to ones usable by libssh2, the overall duration seemed way too high. 
 
-- the PHP userland
-- the PHP extension
-- and finally libssh2
-
-But 10 times slower is definitly too much. I could live with it, but as I'm a curious person and I've got the opportunity to ask to smart people about the problem like Rasmus, let's do it !
+I could live with it, but since I'm a curious person, I took the opportunity to ask our [smart friends at Etsy US](https://codeascraft.com/) 
+about the problem and [Rasmus Lerdorf](https://en.wikipedia.org/wiki/Rasmus_Lerdorf) came to our rescue ! 
 
 #### Enter Sync / Async
 
-After investigations, it seems that the fact that libssh2 only supports synchronous transfers
-whereas command-line `sftp` will do async.
+After investigations, it appeared that libssh2 only supports synchronous transfers
+whereas command-line `sftp` does asynchronous ones.
 
-Synchronous transfert means that each packet (defined to 32KB by SFTP protocol) transfered over the network will have to wait for an ACK from the server, as explained by
+Synchronous transfer means that each SFTP packet (defined to 32KB by SFTP protocol) sent over
+the network will have to wait for an acknowledge message from the server, as explained by
 Daniel Stenberg (author of curl and libssh) [here](http://daniel.haxx.se/blog/2010/12/08/making-sftp-transfers-fast/).
-So it slow things down a lot because it has to wait for an ACK on each packet sent.
+So it slows things down a lot because it has to wait for an ACK on each packet sent rather than sending data in bulk.
 
 
 #### Solution
