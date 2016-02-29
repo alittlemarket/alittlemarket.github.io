@@ -86,11 +86,13 @@ Daniel Stenberg (author of curl and libssh) [here](http://daniel.haxx.se/blog/20
 So it slows things down a lot because it has to wait for an ACK on each packet sent rather than sending data in bulk.
 
 
-#### Solution
+#### Solutions
 
-The first possible solution was to launch a basic [exec](http://php.net/manual/fr/function.exec.php) from PHP to launch transfert via `sftp` command.
+Our first possible solution was to launch a basic [exec](http://php.net/manual/fr/function.exec.php) from PHP to launch transfert via `sftp` command.
+It felt inelegant to fork and authentication using keys without passphrase would have been mandatory. 
 
-But before that, I've found [phpseclib](http://phpseclib.sourceforge.net/), which is a pure PHP reimplementation of some secure protocols, like SFTP !
+More research showed another way to go with the [phpseclib](http://phpseclib.sourceforge.net/), which is a pure PHP reimplementation
+of some secure protocols, including SFTP.
 I've setup the library locally and I've launched the same test as with PHP-SSH2 extension :
 
 
@@ -116,7 +118,7 @@ $sftp->put($destinationCsvFile, $localCsvFile, SFTP::SOURCE_LOCAL_FILE);
 
 {% endhighlight %}
 
-*Note : the code is also cleaner and more readable than with PHP-SSH2, as the library provides a nice object oriented API*
+*Note : the code is also cleaner and more readable than with PHP-SSH2, since the library provides a nice object oriented API*
 
 Let's test it :
 
@@ -127,8 +129,7 @@ user 0.26
 sys 0.05
 {% endhighlight %}
 
-
-Wow, that's nearly same performance as `sftp` command line !
+Wow, that's nearly the same performance than the `sftp` command would have gave !
 
 
 ## TODO Finish conclusion
