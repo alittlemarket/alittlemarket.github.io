@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Fast SFTP transferts using PHP"
-date:   2016-01-20
+date:   2016-03-07
 categories: workflow
 tags: [php, sftp, rasmus, phpseclib, php-ssh2]
 author: romain
@@ -85,7 +85,6 @@ the network will have to wait for an acknowledge message from the server, as exp
 Daniel Stenberg (author of curl and libssh) [here](http://daniel.haxx.se/blog/2010/12/08/making-sftp-transfers-fast/).
 So it slows things down a lot because it has to wait for an ACK on each packet sent rather than sending data in bulk.
 
-
 #### Solutions
 
 Our first possible solution was to launch a basic [exec](http://php.net/manual/fr/function.exec.php) from PHP to launch transfert via `sftp` command.
@@ -122,6 +121,7 @@ $sftp->put($destinationCsvFile, $localCsvFile, SFTP::SOURCE_LOCAL_FILE);
 
 Let's test it :
 
+
 {% highlight bash %}
 $ /usr/local/bin/time -p php sftp_phpseclib.php
 real 1.42
@@ -129,7 +129,10 @@ user 0.26
 sys 0.05
 {% endhighlight %}
 
-Wow, that's nearly the same performance than the `sftp` command would have gave !
+Wow, that's nearly the same performance than the `sftp` command would have gave ! It seems that phpseclib does not suffer from the sync problem.
 
 
-## TODO Finish conclusion
+#### Conclusion
+
+If you have to do file or data transferts using the SFTP protocol with PHP, I would recommand you to use phpseclib and not the PHP-SSH2 extension if data you want to transfert
+are rather large.

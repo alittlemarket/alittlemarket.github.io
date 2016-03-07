@@ -26,6 +26,13 @@ authors:
     email: antoine@alittlemarket.fr
     twitter: __tooni__
     github: antfroger
+  arnaud:
+    name: Arnaud Pflieger
+    display_name: Arnaud
+    avatar: https://avatars0.githubusercontent.com/u/3698901?v=3&s=400
+    email: arnaud@alittlemarket.fr
+    twitter: ArnaudPflieger
+    github: apflieger
   celine:
     name: Celine Coelho
     display_name: Celine
@@ -61,13 +68,6 @@ authors:
     email: laurent@alittlemarket.fr
     twitter: sitesAlittle
     github: laurent-callarec
-  loic:
-    name: Loic Duvernay
-    display_name: Loic
-    avatar: https://avatars3.githubusercontent.com/u/1436805?v=3&s=400
-    email: loic@alittlemarket.fr
-    twitter: sitesAlittle
-    github: Incubart
   matthieu:
     name: Matthieu Rollin
     display_name: Matthieu
@@ -82,6 +82,13 @@ authors:
     email: nick@alittlemarket.fr
     twitter: njouannem
     github: Nickology
+  olivier:
+    name: Olivier Garcia
+    display_name: Arnaud
+    avatar: https://avatars1.githubusercontent.com/u/10607?v=3&s=460
+    email: olivier@alittlemarket.fr
+    twitter: 0livier
+    github: 0livier
   qikai:
     name: Qikai Gu
     display_name: Qikai
