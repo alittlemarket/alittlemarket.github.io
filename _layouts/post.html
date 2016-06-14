@@ -16,7 +16,7 @@
                 <h1>{{ page.title }}</h1>
                 <div class="byline clearfix">
                     <img class="left" src="{{ author.avatar }}" width="40" height="40" alt="{{ author.name }}" />
-                    by {{ author.display_name }}
+                    by <a href="https://github.com/{{ author.github }}" alt="Github {{ author.name }}">{{ author.display_name }}</a>
                     <p class="date">
                         <span class="month">{{ page.date | date: '%b' }}</span>
                         <span class="day">{{ page.date | date: '%d' }}</span>
