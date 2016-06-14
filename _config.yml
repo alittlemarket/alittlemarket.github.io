@@ -26,6 +26,7 @@ authors:
     email: antoine@alittlemarket.fr
     twitter: __tooni__
     github: antfroger
+    active: false
   arnaud:
     name: Arnaud Pflieger
     display_name: Arnaud
