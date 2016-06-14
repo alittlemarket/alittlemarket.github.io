@@ -11,6 +11,7 @@ github_username:  alittlemarket
 markdown: kramdown
 permalink: pretty
 
+excerpt_separator: "" # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
 
 # blog cover
 cover: "/assets/images/img4.jpg"
@@ -25,6 +26,13 @@ authors:
     email: antoine@alittlemarket.fr
     twitter: __tooni__
     github: antfroger
+  arnaud:
+    name: Arnaud Pflieger
+    display_name: Arnaud
+    avatar: https://avatars0.githubusercontent.com/u/3698901?v=3&s=400
+    email: arnaud@alittlemarket.fr
+    twitter: ArnaudPflieger
+    github: apflieger
   celine:
     name: Celine Coelho
     display_name: Celine
@@ -60,13 +68,6 @@ authors:
     email: laurent@alittlemarket.fr
     twitter: sitesAlittle
     github: laurent-callarec
-  loic:
-    name: Loic Duvernay
-    display_name: Loic
-    avatar: https://avatars3.githubusercontent.com/u/1436805?v=3&s=400
-    email: loic@alittlemarket.fr
-    twitter: sitesAlittle
-    github: Incubart
   matthieu:
     name: Matthieu Rollin
     display_name: Matthieu
@@ -81,6 +82,13 @@ authors:
     email: nick@alittlemarket.fr
     twitter: njouannem
     github: Nickology
+  olivier:
+    name: Olivier Garcia
+    display_name: 0livier
+    avatar: https://avatars1.githubusercontent.com/u/10607?v=3&s=460
+    email: olivier@alittlemarket.fr
+    twitter: 0livier
+    github: 0livier
   qikai:
     name: Qikai Gu
     display_name: Qikai
@@ -88,7 +96,7 @@ authors:
     email: qikai@alittlemarket.fr
     twitter: QikaiGu
     github: Qikai-ALM
-  romaina:
+  romain:
     name: Romain Ardiet
     display_name: Romain
     avatar: https://avatars2.githubusercontent.com/u/2420675?v=3&s=400
@@ -101,7 +109,7 @@ authors:
     avatar: https://avatars2.githubusercontent.com/u/6448828?v=3&s=400
     email: sylvaina@alittlemarket.fr
     twitter: dye_pop
-    github: sylvaina-alm
+    github: sylvaina-artois
   sylvainm:
     name: Sylvain Mauduit
     display_name: Sylvain
