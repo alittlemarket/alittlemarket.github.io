@@ -19,10 +19,15 @@ The goal of this project was to force all our users to access our services throu
 A switch from HTTP to HTTPS can have a big impact on the search engines positionning. As we do not use paid marketing, a bad indexing in search engines and especially Google can have really bad consequences on our traffic. Thanks to previous experiences, our SEO consultant estimated that SEO traffic returns back to normal around 3 months after switching.  
 Because we had several marketing operations during the year (winter and summer sales, private sales, Christmas, etc) and we didn't want a big impact on our SEO traffic during these operations, we carefully listed the period when the switch could be effective. We only found two:
 
-- February/March
-- July/August
+- February/March (traffic should return back to normal around May)
+- July/August (traffic should return back to normal around October)
 
-### Milestones
+### How
+We want to switch smoothly and easily from HTTP to HTTPS. At the most we want to update few configuration values to do it progressively.
+All the blocking points to use HTTPS will have to be fixed before the deadline.
+
+
+## Milestones
 
 1. Dependencies
     1. List all the dependencies of our main applications (ex: assets, blogs, images, etc)
@@ -35,11 +40,26 @@ Because we had several marketing operations during the year (winter and summer s
         2. Add them in Route53
         3. Update our stack to use them instead of the previous ones
 
-3. Hardcoded URLs  
+3. Monitoring
+   Monitor HTTP and HTTPS traffic
+
+4. Hardcoded URLs  
    Many links to our applications within our codebase are hardcoded
-    1. 
+    1. Determine each type of hardcoded URLs (ex: http://www.alittlemarket.com, http://CONSTANT, http://assets.alittlemarket.com, etc)
+    2. Replace all the hardcoded URLs by the equivalent constant
+        1. Project by project
+        2. file type by file type (php, smarty, twig, etc)
+        3. URL type by URL type
+        4. URLs in database
 
+5. Google
+    1. Google Search Console  
+	   Create new entries in this tool
+    2. Google Analytics  
+	   Try to differenciate HTTP traffic to HTTPS traffic
 
+6. Force HTTPS
+   Requests going through HTTP must be redirected to HTTPS
 
 ## Execution
 
