@@ -14,7 +14,7 @@ layout: default
                   <a class="post-link h1" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
                   <div class="byline clearfix">
                       <img class="left" src="{{ author.avatar }}" width="40" height="40" alt="{{ author.name }}" />
-                      by {{ author.display_name }}
+                      by <a href="https://github.com/{{ author.github }}" alt="Github {{ author.name }}">{{ author.display_name }}</a>
                       <p class="date">
                           <span class="month">{{ post.date | date: '%b' }}</span>
                           <span class="day">{{ post.date | date: '%d' }}</span>
