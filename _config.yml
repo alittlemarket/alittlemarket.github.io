@@ -11,8 +11,6 @@ github_username:  alittlemarket
 markdown: kramdown
 permalink: pretty
 
-excerpt_separator: "" # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
-
 # blog cover
 cover: "/assets/images/img4.jpg"
 logo: "/assets/images/logoblanc.png"
