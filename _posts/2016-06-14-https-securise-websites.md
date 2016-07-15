@@ -145,9 +145,15 @@ Forunately we discored that problem very quickly and only one hour and a half Go
 {:.text-center}
 ![Stasd metrics](/assets/https-securise-websites/grafana-traffic.png)
 
-## What happened after ?
+### Bugs
 
+We found only one bug due to the switch.  
+The bug was due to external javascript library (used for the [Mondial Relay](http://www.mondialrelay.fr/) delivery service) that we still called using http.  
+Web browsers did not load the external javascript and the customers who chose Mondial Relay as delivery mode couldn't choose the relay where they wanted to be delivered...  
+To fix the bug we couldn't simply change the URL to use HTTPS because the library wasn't available through that protocol. We had to upgrade the version of the library. Fortunately it only involved small changes and the bug have been fixed quickly.
 
+## What happened next ?
+
+*Add some feedbacks from Mouad*
 
 Thanks for reading!
-
