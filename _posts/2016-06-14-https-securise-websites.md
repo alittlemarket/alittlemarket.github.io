@@ -7,7 +7,7 @@ tags: [security, https, http, migration, project]
 author: antoine
 ---
 
-When Etsy acquired A little Market, the migration of our websites to https which was in the box since few years became one of our priority project in mid 2015.  
+When Etsy acquired A little Market, the migration of our sites to https which was in the box since few years became one of our priority project in mid 2015.  
 But before starting such a big and impacting project, we went through a long preparation.
 
 ## Project preparation
@@ -21,7 +21,7 @@ All the blocking points to use HTTPS will have to be fixed before the deadline.
 
 ### Acceptance criteria
 All our applications must be accessible through https.  
-All users accessing the websites through http must be redirected to https.  
+All users accessing the websites through http must be redirected to https using 301 (301 redirections are very important for Search engines).  
 
 ### When to switch ?
 A switch from HTTP to HTTPS can have a big impact on the search engines positionning. As we do not use paid marketing, a bad indexing in search engines and especially Google can have really bad consequences on our traffic. Thanks to previous experiences, our SEO consultant estimated that SEO traffic returns back to normal around 3 months after switching.  
@@ -57,10 +57,10 @@ Because we had several marketing operations during the year (winter and summer s
         4. URLs in database
 
 5. Google
-    1. Google Search Console  
-       Create new entries in this tool
-    2. Google Analytics  
-       Try to differenciate HTTP traffic to HTTPS traffic
+    1. [Google Search Console](https://www.google.com/webmasters/tools/)  
+       Create new entries for https sites
+    2. [Google Analytics](https://analytics.google.com/)  
+       Differenciate HTTP traffic to HTTPS traffic
 
 6. Force HTTPS
    Requests going through HTTP must be redirected to HTTPS  
@@ -68,9 +68,21 @@ Because we had several marketing operations during the year (winter and summer s
 
 ## Execution
 
-- *How many time?*
-- *Difficulties ?*
-- *Unplanned tasks ?*
+We were two then three to work on this project during 4 months, between November 2015 and February 2016.  
+It was a hard work as you can imagine due to the uncountable amount of hardcoded URLs everywhere on the sites, the many dependencies to also migrate to HTTPS and the risk to loose SEO traffic.
+
+During the project development we never blocked the access to our sites through https but this protocol had a specific robots.txt file to prevent search engines from crawling.  
+It has played tricks on us the D day...
+
+```
+User-agent: *
+Disallow: /
+```
+
+But one important thing not to do is to disallow HTTP traffic from search engines once the switch is done.   
+If you do, search engines can't calculate the new position of the HTTPS pages. **You must allow HTTP traffic and redirect it using a 301 to the HTTPS version**.
+
+We also used a [HSTS header](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) for all incoming requests to warn web browsers that they should only interact with our applications using HTTPS protocol.
 
 ## Gradual activation
 
@@ -114,14 +126,17 @@ The plan was to:
 
 * Create a war room containg one person of each service (customer service, communication, technical teams, QA, SEO members, etc.)
 * Switch the application one by one (alittlemarket.it, alittlemarket.com, alittlemercerie.com)
+  * Open traffic through HTTPS
+  * 301 redirections for incoming traffic though HTTP
+  * Update all the sitemaps (a cronjob to relaunch) to use HTTPS URLs instead of HTTP
 * After each switch, everybody in the war room had to check that everything goes right (metrics, functional tests, social networks, forums, etc.)
 * Drink some beers after that big day !
 
-#### Metrics
+### D-day traffic metrics
 
 As you can see on the metrics below, we monitor global http and https traffic, the traffic for each website and Google bot traffic.
 
-On the 3 graphs ALT IT, ALM FR and ALME FR we saw that the http traffic abruptly stops and at the same moment the https traffic starts. That's when we switched.  
+On the 3 graphs ALM IT, ALM FR and ALME FR we saw that the http traffic abruptly stops and at the same moment the https traffic starts. That's when we switched.  
 On the global traffic we saw the same impact at the same times.  
 
 And finally we saw a strange thing on the Google bot traffic. At 2pm (14:00) we see that Google bot http traffic stops but the https traffic does not start. It's not normal and we were worried about that. We couldn't afford to loose SEO. After some researches we discovered that Google had cached the robots.txt file we served it when it came through https (it was a different file than the http robots.txt file). In that file to avoid duplicated content we disallowed everything, that's why it stopped to crawled them.  
