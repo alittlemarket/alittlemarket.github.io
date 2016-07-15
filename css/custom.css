@@ -277,6 +277,10 @@ pre code {
     margin-right: 0.9em;
 }
 
+.post-content img {
+    max-width: 100%;
+}
+
 /* Syntax highlighting styles */
 /* ----------------------------------------------------------*/
 .highlight .s2 { color: #9D4E6D;} /* Literal.String.Double */
