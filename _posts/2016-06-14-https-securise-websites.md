@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Switch to https to securise services"
+title:  "How Etsy France switched all its sites to HTTPS"
 date:   2016-07-15
-categories: security
-tags: [security, https, http, migration]
+categories: projects
+tags: [security, https, http, migration, project]
 author: antoine
 ---
 
