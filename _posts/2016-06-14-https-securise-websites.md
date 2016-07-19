@@ -13,17 +13,21 @@ But before starting such a big and impacting project, we went through a long pre
 ## Project preparation
 
 ### Why ?
+
 The goal of this project was to force all our users to access our services through HTTPS connections. Google and other search engines had to only crawl our websites in HTTPS only to avoid duplicate contents.
 
 ### How
+
 We want to switch smoothly and easily from HTTP to HTTPS. At the most we want to update few configuration values to do it progressively.
 All the blocking points to use HTTPS will have to be fixed before the deadline.
 
 ### Acceptance criteria
+
 All our applications must be accessible through https.  
 All users accessing the websites through http must be redirected to https using 301 (301 redirections are very important for Search engines).  
 
 ### When to switch ?
+
 A switch from HTTP to HTTPS can have a big impact on the search engines positionning. As we do not use paid marketing, a bad indexing in search engines and especially Google can have really bad consequences on our traffic. Thanks to previous experiences, our SEO consultant estimated that SEO traffic returns back to normal around 3 months after switching.  
 Because we had several marketing operations during the year (winter and summer sales, private sales, Christmas, etc.) and we didn't want a big impact on our SEO traffic during these operations, we carefully listed the period when the switch could be effective. We only found two:
 
@@ -152,8 +156,25 @@ The bug was due to external javascript library (used for the [Mondial Relay](htt
 Web browsers did not load the external javascript and the customers who chose Mondial Relay as delivery mode couldn't choose the relay where they wanted to be delivered...  
 To fix the bug we couldn't simply change the URL to use HTTPS because the library wasn't available through that protocol. We had to upgrade the version of the library. Fortunately it only involved small changes and the bug have been fixed quickly.
 
-## What happened next ?
+## What happened next?
 
-*Add some feedbacks from Mouad*
+### Google indexation
+
+Thanks to 301 redirection from HTTP to HTTPS on every page of the sites, Google started to crawl pages using HTTPS as soon as we switched the scheme. No more pages were crawled using the HTTP scheme.
+
+*Insert Mouad images here*
+
+But, it doesn't mean that Google had replaced all the URLs in its index by the HTTPS version. It simply means that it continued to crawl using HTTP and was redirected to HTTPS.  
+We noticed the HTTPS version of the main pages appeared in Google results **one day after the switch**.  
+Then, around **80% of the indexed pages** had been replaced after 1 month.  
+The deeper pages had been replaced in the Google index after about 3 months. 
+
+### Traffic disturbances
+
+Three months after the switch, our traffic from Google recovered to its normal trend.  
+E-commerce sites migrating from HTTP to HTTPS can loose 40% of their traffic during several months. A little Market and A little Mercerie lost much less traffic and only for three months.  
+
+
+**Etsy France's technical team successfully performed that big challenge thanks to several measures including SEO.**
 
 Thanks for reading!
