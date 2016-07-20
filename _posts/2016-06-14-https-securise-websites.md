@@ -7,18 +7,18 @@ tags: [security, https, http, migration, project]
 author: antoine
 ---
 
-When Etsy acquired A little Market, the migration of our sites to https which was in the box since few years became one of our priority project in mid 2015.  
-But before starting such a big and impacting project, we went through a long preparation.
+When Etsy acquired A little Market, the migration of our sites to https which was on the shelf since a few years became one of our top priority projects in mid 2015.  
+But before starting such a big and impacting project, we went through a long preparation phase.
 
 ## Project preparation
 
 ### Why ?
 
-The goal of this project was to force all our users to access our services through HTTPS connections. Google and other search engines had to only crawl our websites in HTTPS only to avoid duplicate contents.
+The goal of this project was to force all our users to access our services through HTTPS connections. Google and other search engines would have to crawl our websites only in HTTPS to avoid duplicate content.
 
 ### How
 
-We want to switch smoothly and easily from HTTP to HTTPS. At the most we want to update few configuration values to do it progressively.
+We want to switch smoothly and easily from HTTP to HTTPS. At most, we want to update a few configuration values to do it progressively.
 All the blocking points to use HTTPS will have to be fixed before the deadline.
 
 ### Acceptance criteria
@@ -28,8 +28,8 @@ All users accessing the websites through http must be redirected to https using 
 
 ### When to switch ?
 
-A switch from HTTP to HTTPS can have a big impact on the search engines positionning. As we do not use paid marketing, a bad indexing in search engines and especially Google can have really bad consequences on our traffic. Thanks to previous experiences, our SEO consultant estimated that SEO traffic returns back to normal around 3 months after switching.  
-Because we had several marketing operations during the year (winter and summer sales, private sales, Christmas, etc.) and we didn't want a big impact on our SEO traffic during these operations, we carefully listed the period when the switch could be effective. We only found two:
+A switch from HTTP to HTTPS can have a big impact on search engine's ranking. As we do not use paid marketing, a bad indexing in search engines and especially Google can have really bad consequences on our traffic. Thanks to previous experiences, our SEO consultant estimated that SEO traffic returns back to normal around 3 months after switching.  
+Because we had several marketing operations during the year (winter and summer sales, private sales, Christmas, etc.) and we didn't want a big impact on our SEO traffic during these operations, we carefully determined the periods when the switch could be made. We only found two:
 
 - February/March (traffic should return back to normal around May)
 - July/August (traffic should return back to normal around October)
@@ -41,7 +41,7 @@ Because we had several marketing operations during the year (winter and summer s
     1. List all the dependencies of our main applications (ex: assets, blogs, images, etc)
     2. These dependencies will have to be migrated first.
 
-2. We know some our hostnames contain more than one subdomain level (ex: static.commun.alittlemarket.com) but we don't want to buy expensive certificates that cover every levels.
+2. We know some of our hostnames contain more than one subdomain level (ex: static.commun.alittlemarket.com) but we don't want to buy expensive certificates that cover every level.
     1. List all the concerned hostnames
     2. Fix incompatible subdomains (ex: static.commun.alittlemarket.com -> static-commun.alittlemarket.com). Fix them means:
         1. Create new subdomains in apache
@@ -49,11 +49,11 @@ Because we had several marketing operations during the year (winter and summer s
         3. Update our stack to use them instead of the previous ones
 
 3. Monitoring
-   Monitor HTTP and HTTPS traffic using Statsd
+   Monitor HTTP and HTTPS traffic using [Statsd](https://github.com/etsy/statsd)
 
 4. Hardcoded URLs  
    Many links to our applications within our codebase are hardcoded
-    1. Determine each type of hardcoded URLs (ex: http://www.alittlemarket.com, http://CONSTANT, http://assets.alittlemarket.com, etc)
+    1. Determine each type of hardcoded URL (ex: http://www.alittlemarket.com, http://CONSTANT, http://assets.alittlemarket.com, etc)
     2. Replace all the hardcoded URLs by the equivalent constant
         1. Project by project
         2. file type by file type (php, smarty, twig, etc.)
@@ -64,7 +64,7 @@ Because we had several marketing operations during the year (winter and summer s
     1. [Google Search Console](https://www.google.com/webmasters/tools/)  
        Create new entries for https sites
     2. [Google Analytics](https://analytics.google.com/)  
-       Differenciate HTTP traffic to HTTPS traffic
+       Differentiate HTTP traffic from HTTPS traffic
 
 6. Force HTTPS
    Requests going through HTTP must be redirected to HTTPS  
@@ -73,10 +73,10 @@ Because we had several marketing operations during the year (winter and summer s
 ## Execution
 
 We were two then three to work on this project during 4 months, between November 2015 and February 2016.  
-It was a hard work as you can imagine due to the uncountable amount of hardcoded URLs everywhere on the sites, the many dependencies to also migrate to HTTPS and the risk to loose SEO traffic.
+It was a hard task as you can imagine due to the innumerable amount of hardcoded URLs everywhere in the codebase, the many dependencies that also needed to migrate to HTTPS, and the risk of losing SEO traffic.
 
-During the project development we never blocked the access to our sites through https but this protocol had a specific robots.txt file to prevent search engines from crawling.  
-It has played tricks on us the D day...
+During the project development, we never blocked the access to our sites through https but this protocol had a specific robots.txt file to prevent search engines from crawling.  
+This played tricks on us on D-day...
 
 ```
 User-agent: *
@@ -91,11 +91,12 @@ We also used a [HSTS header](https://en.wikipedia.org/wiki/HTTP_Strict_Transport
 ## Gradual activation
 
 One of our goal was to progressively enable https on our applications, we didn't want to enable it for everybody at once.  
-But on our websites for obscur reasons some of the oldest pages use the html tag `<base href="http://www.alittlemarket.com/" />` that we didn't succeeded in removing without breaking many links everywhere. The link in this tag is managed by configuration and couldn't change in function of the user.
+But on our websites, some of the oldest pages use the html tag `<base href="http://www.alittlemarket.com/" />` that we didn't succeed in removing without breaking many links everywhere. The link in this tag is managed by a configuration file and could not change based on the user accessing the page.
 
-We decided to hack this feature to be able to adapt this link in function of the consulted URL. In other words, if a user consults the website in http the link has to be http://www.alittlemarket.com and if a user consults the website in https the link has to be https://www.alittlemarket.com.
-So, a user arriving in https on one of our websites stay in https all along his navigation.
-It looked like:
+We decided to hack this feature to be able to adapt this link depending on the visited URL. In other words, if a user visits the website in http, the link has to be http://www.alittlemarket.com; and if a user consults the website in https, the link has to be https://www.alittlemarket.com.
+So, a user arriving in https on one of our websites stays in https during his entire session.
+
+It looks like:
 
 ```php
 <?php
@@ -114,7 +115,7 @@ if (!defined('HTTP_PATH_APP_DOMAIN_NAME')) {
 ### Activation on our preprod environment "Princess"
 
 The first step was to enable https on our Princess environment.  
-Everybody who wants to deploy a feature in production (it arrives several times a day) must test it first on Princess. So, everybody was testing https on Princess without thinking about it during several days.
+Everybody who wants to deploy a feature in production (several times a day) must test it first on Princess. So, everybody was testing https on Princess without thinking about it during several days.
 
 The Core team and our QA team had also tested https during all the process.
 
@@ -128,23 +129,23 @@ So, when someone was detected as being an admin and was surfing on http, he was 
 The big day was **February 29th**.  
 The plan was to:
 
-* Create a war room containg one person of each service (customer service, communication, technical teams, QA, SEO members, etc.)
-* Switch the application one by one (alittlemarket.it, alittlemarket.com, alittlemercerie.com)
+* Create a war room contaning one person of each service (customer service, communication, technical teams, QA, SEO members, etc.)
+* Switch the applications one by one (alittlemarket.it, alittlemarket.com, alittlemercerie.com)
   * Open traffic through HTTPS
   * 301 redirections for incoming traffic though HTTP
   * Update all the sitemaps (a cronjob to relaunch) to use HTTPS URLs instead of HTTP
-* After each switch, everybody in the war room had to check that everything goes right (metrics, functional tests, social networks, forums, etc.)
+* After each switch, everybody in the war room had to check that everything was working correctly (metrics, functional tests, social networks, forums, etc.)
 * Drink some beers after that big day !
 
 ### D-day traffic metrics
 
-As you can see on the metrics below, we monitor global http and https traffic, the traffic for each website and Google bot traffic.
+As you can see on the metrics below, we monitor global http and https traffic, the traffic for each website, and Google bot traffic.
 
-On the 3 graphs ALM IT, ALM FR and ALME FR we saw that the http traffic abruptly stops and at the same moment the https traffic starts. That's when we switched.  
+On the 3 graphs (ALM IT, ALM FR, and ALME FR) we saw that the http traffic abruptly stops and at the same moment the https traffic starts. That's when we switched.  
 On the global traffic we saw the same impact at the same times.  
 
-And finally we saw a strange thing on the Google bot traffic. At 2pm (14:00) we see that Google bot http traffic stops but the https traffic does not start. It's not normal and we were worried about that. We couldn't afford to loose SEO. After some researches we discovered that Google had cached the robots.txt file we served it when it came through https (it was a different file than the http robots.txt file). In that file to avoid duplicated content we disallowed everything, that's why it stopped to crawled them.  
-Forunately we discored that problem very quickly and only one hour and a half Google crawled our applications again. We only send again the good robots.txt in [Google Search Console](https://www.google.com/webmasters/tools/).
+Finally, we saw a strange thing on the Google bot traffic. At 2pm (14:00) we see that Google bot http traffic stops but the https traffic does not start. It's not normal and we were worried about that. We couldn't afford to lose SEO. After some research, we discovered that Google had cached the robots.txt file we served it when it came through https (it was a different file than the http robots.txt file). In that file, to avoid duplicated content, we disallowed everything which is why it stopped crawling them.  
+Fortunately, we discovered that problem very quickly and 1.5 hours later, Google crawled our applications again. We only needed to send the good robots.txt in [Google Search Console](https://www.google.com/webmasters/tools/).
 
 {:.text-center}
 ![Stasd metrics](/assets/https-securise-websites/grafana-traffic.png)
@@ -152,9 +153,9 @@ Forunately we discored that problem very quickly and only one hour and a half Go
 ### Bugs
 
 We found only one bug due to the switch.  
-The bug was due to external javascript library (used for the [Mondial Relay](http://www.mondialrelay.fr/) delivery service) that we still called using http.  
-Web browsers did not load the external javascript and the customers who chose Mondial Relay as delivery mode couldn't choose the relay where they wanted to be delivered...  
-To fix the bug we couldn't simply change the URL to use HTTPS because the library wasn't available through that protocol. We had to upgrade the version of the library. Fortunately it only involved small changes and the bug have been fixed quickly.
+The bug was due to an external javascript library (used for the [Mondial Relay](http://www.mondialrelay.fr/) delivery service) that we still called using http.  
+Web browsers did not load the external javascript and the customers who chose Mondial Relay as delivery mode couldn't choose the relay point where they wanted to be delivered...  
+To fix the bug we couldn't simply change the URL to use HTTPS because the library wasn't available through that protocol. We had to upgrade the version of the library. Fortunately, it only involved small changes and the bug was fixed quickly.
 
 ## What happened next?
 
@@ -164,7 +165,7 @@ Thanks to 301 redirection from HTTP to HTTPS on every page of the sites, Google 
 
 *Insert Mouad images here*
 
-But, it doesn't mean that Google had replaced all the URLs in its index by the HTTPS version. It simply means that it continued to crawl using HTTP and was redirected to HTTPS.  
+However, that doesn't mean that Google had replaced all the URLs in its index by the HTTPS version. It simply means that it continued to crawl using HTTP and was redirected to HTTPS.  
 We noticed the HTTPS version of the main pages appeared in Google results **one day after the switch**.  
 Then, around **80% of the indexed pages** had been replaced after 1 month.  
 The deeper pages had been replaced in the Google index after about 3 months. 
@@ -172,7 +173,7 @@ The deeper pages had been replaced in the Google index after about 3 months.
 ### Traffic disturbances
 
 Three months after the switch, our traffic from Google recovered to its normal trend.  
-E-commerce sites migrating from HTTP to HTTPS can loose 40% of their traffic during several months. A little Market and A little Mercerie lost much less traffic and only for three months.  
+E-commerce sites migrating from HTTP to HTTPS can lose 40% of their traffic during several months. A little Market and A little Mercerie lost much less traffic and only for three months.  
 
 
 **Etsy France's technical team successfully performed that big challenge thanks to several measures including SEO.**
