@@ -168,18 +168,33 @@ To fix the bug we couldn't simply change the URL to use HTTPS because the librar
 
 Thanks to 301 redirection from HTTP to HTTPS on every page of the sites, Google started to crawl pages using HTTPS as soon as we switched the scheme. No more pages were crawled using the HTTP scheme.
 
-*Insert Mouad images here*
+{:.text-center}
+![Google crawl](/assets/https-securise-websites/google-crawl-over-time.png)
+*HTTP and HTTPS crawl over time*
 
 However, that doesn't mean that Google had replaced all the URLs in its index by the HTTPS version. It simply means that it continued to crawl using HTTP and was redirected to HTTPS.  
 We noticed the HTTPS version of the main pages appeared in Google results **one day after the switch**.  
 Then, around **80% of the indexed pages** had been replaced after 1 month.  
 The deeper pages had been replaced in the Google index after about 3 months. 
 
+{:.text-center}
+![Google crawl](/assets/https-securise-websites/http-response-code-march-2016.png)
+*HTTP Response code in march 2016*
+
+{:.text-center}
+![Google crawl](/assets/https-securise-websites/https-response-code-march-2016.png)
+*HTTPS Response code in march 2016*
+
+Quickly, Google stopped crawling our sites using HTTP in favor of HTTPS
+
 ### Traffic disturbances
 
 Three months after the switch, our traffic from Google recovered to its normal trend.  
 E-commerce sites migrating from HTTP to HTTPS can lose 40% of their traffic during several months. A little Market and A little Mercerie lost much less traffic and only for three months.  
 
+{:.text-center}
+![Google crawl](/assets/https-securise-websites/seo-traffic-over-time.png)
+*SEO traffic from February to June 2016*
 
 **Etsy France's technical team successfully performed that big challenge thanks to several measures including SEO.**
 
