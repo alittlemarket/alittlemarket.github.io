@@ -28,7 +28,7 @@ All the blocking points to use HTTPS will have to be fixed before the deadline.
 ### Acceptance criteria
 
 All our applications must be accessible through HTTPS.  
-All users accessing the websites through HTTP must be redirected to HTTPS using 301 ([301 redirections](https://en.wikipedia.org/wiki/HTTP_301) are very important for Search engines).  
+All users accessing the websites through HTTP must be redirected to HTTPS using 301 ([301 redirections](https://en.wikipedia.org/wiki/HTTP_301){:target="_blank"} are very important for Search engines).  
 
 ### When to switch ?
 
@@ -49,11 +49,11 @@ Because we had several marketing operations during the year (winter and summer s
     1. List all the concerned hostnames
     2. Fix incompatible subdomains (ex: static.commun.alittlemarket.com -> static-commun.alittlemarket.com). Fix them means:
         1. Create new subdomains in apache
-        2. Add them in [Route53](https://aws.amazon.com/route53/)
+        2. Add them in [Route53](https://aws.amazon.com/route53/){:target="_blank"}
         3. Update our stack to use them instead of the previous ones
 
 3. Monitoring
-   Monitor HTTP and HTTPS traffic using [Statsd](https://github.com/etsy/statsd)
+   Monitor HTTP and HTTPS traffic using [Statsd](https://github.com/etsy/statsd){:target="_blank"}
 
 4. Hardcoded URLs  
    Many links to our applications within our codebase are hardcoded
@@ -65,9 +65,9 @@ Because we had several marketing operations during the year (winter and summer s
         4. URLs in database
 
 5. Google
-    1. [Google Search Console](https://www.google.com/webmasters/tools/)  
+    1. [Google Search Console](https://www.google.com/webmasters/tools/){:target="_blank"}  
        Create new entries for HTTPS sites
-    2. [Google Analytics](https://analytics.google.com/)  
+    2. [Google Analytics](https://analytics.google.com/){:target="_blank"}  
        Differentiate HTTP traffic from HTTPS traffic: we used Google Analytics' fifth custom var to store the scheme  
        `_gaq.push(['_setCustomVar', 5, 'Scheme', window.location.protocol.replace(/:$/, ''), 3]);`
 
@@ -91,7 +91,7 @@ Disallow: /
 But one important thing not to do is to disallow HTTP traffic from search engines once the switch is done.   
 If you do, search engines can't calculate the new position of the HTTPS pages. **You must allow HTTP traffic and redirect it using a 301 to the HTTPS version**.
 
-We also used a [HSTS header](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) for all incoming requests to warn web browsers that they should only interact with our applications using HTTPS protocol.
+We also used a [HSTS header](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security){:target="_blank"} for all incoming requests to warn web browsers that they should only interact with our applications using HTTPS protocol.
 
 ## Gradual activation
 
@@ -150,7 +150,7 @@ On the 3 graphs (ALM IT, ALM FR, and ALME FR) we saw that the HTTP traffic abrup
 On the global traffic we saw the same impact at the same times.  
 
 Finally, we saw a strange thing on the Google bot traffic. At 2pm (14:00) we see that Google bot http traffic stops but the HTTPS traffic does not start. It's not normal and we were worried about that. We couldn't afford to lose SEO. After some research, we discovered that Google had cached the robots.txt file we served it when it came through HTTPS (it was a different file than the HTTPS robots.txt file). In that file, to avoid duplicated content, we disallowed everything which is why it stopped crawling them.  
-Fortunately, we discovered that problem very quickly and 1.5 hours later, Google crawled our applications again. We only needed to send the good robots.txt in [Google Search Console](https://www.google.com/webmasters/tools/).
+Fortunately, we discovered that problem very quickly and 1.5 hours later, Google crawled our applications again. We only needed to send the good robots.txt in [Google Search Console](https://www.google.com/webmasters/tools/){:target="_blank"}.
 
 {:.text-center}
 ![Stasd metrics](/assets/https-securise-websites/grafana-traffic.png)
@@ -158,7 +158,7 @@ Fortunately, we discovered that problem very quickly and 1.5 hours later, Google
 ### Bugs
 
 We found only one bug due to the switch.  
-The bug was due to an external javascript library (used for the [Mondial Relay](http://www.mondialrelay.fr/) delivery service) that we still called using HTTP.  
+The bug was due to an external javascript library (used for the [Mondial Relay](http://www.mondialrelay.fr/){:target="_blank"} delivery service) that we still called using HTTP.  
 Web browsers did not load the external javascript and the customers who chose Mondial Relay as delivery mode couldn't choose the relay point where they wanted to be delivered...  
 To fix the bug we couldn't simply change the URL to use HTTPS because the library wasn't available through that protocol. We had to upgrade the version of the library. Fortunately, it only involved small changes and the bug was fixed quickly.
 
