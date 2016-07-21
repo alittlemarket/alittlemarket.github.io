@@ -146,9 +146,11 @@ a:visited { color: #205caa; }
 
 .home h1 { margin-bottom: 25px; }
 
-.posts { list-style-type: none; }
+.posts,
+.post-content { list-style-type: none; }
 
-.posts li { margin-bottom: 30px; }
+.posts li,
+.post-content li { margin-bottom: 15px; }
 
 .posts .post-link {
   font-size: 24px;
