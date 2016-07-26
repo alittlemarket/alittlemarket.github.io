@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How Etsy France switched all its sites to HTTPS"
+title:  "How Etsy France migrated all its sites to HTTPS"
 date:   2016-07-15
 categories: projects
 tags: [security, https, http, migration, project]
@@ -14,7 +14,11 @@ But before starting such a big and impacting project, we went through a long pre
 
 ### Why
 
-Prevent session hijacking, data sniffed, etc.
+As A little Market is growing up day after day, it was becoming increasingly important to securise our applications to prevent session hijacking, data sniffed, etc.  
+Our users are also more and more aware about security, especially when money is involved. It is our mission to reassure them on the reliability of the applications they use every day.  
+All sites worthy of the name must be accessible through HTTPS for all these reasons and also for their image.  
+
+That's why we decided that HTTPS migration was a priority in mid 2015.
 
 ### Goal
 
@@ -42,8 +46,8 @@ All users accessing the websites through HTTP must be redirected to HTTPS using 
 **A switch from HTTP to HTTPS can have a big impact on search engine's ranking**. As we do not use paid marketing, a bad indexing in search engines and especially Google can have really bad consequences on our traffic. Thanks to previous experiences, our SEO consultant estimated that SEO traffic returns back to normal around 3 months after switching.  
 Because we had several marketing operations during the year (winter and summer sales, private sales, Christmas, etc.) and we didn't want a big impact on our SEO traffic during these operations, we carefully determined the periods when the switch could be made. We only found two:
 
-- February at the end of the winter sales (traffic should return back to normal around May)
-- July at the end of the summer sales (traffic should return back to normal around October)
+- **February** at the end of the winter sales (traffic should return back to normal around May)
+- **July** at the end of the summer sales (traffic should return back to normal around October)
 
 
 ## Milestones
@@ -140,15 +144,113 @@ if (!defined('HTTP_PATH_APP_DOMAIN_NAME')) {
 
 ### Activation on our preprod environment "Princess"
 
-The first step was to enable HTTPS on our Princess environment.  
+The first step was to enable HTTPS on our Princess environment :  
+
+* Princess configuration was updated: constant `DEFAULT_HTTP_SCHEME` was changed to https
+* Princess virtual hosts were also updated to accept HTTP and HTTPS (we used [Apache module mod_macro](https://httpd.apache.org/docs/2.4/mod/mod_macro.html){:target="_blank"} to avoid repeating ourselves in each vhosts)  
+
+  ```
+    # force_ssl.conf
+    <Macro ForceSsl>
+        RewriteCond %{HTTP:X-FORWARDED-PROTO} ^http$ [NC]
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    </Macro>
+  ```
+  ```
+  # hsts_header.conf
+  <Macro HstsHeader $max_age>
+    SetEnvIf X-Forwarded-Proto https REQUEST_IS_HTTPS
+    Header always set Strict-Transport-Security "max-age=$max_age" env=REQUEST_IS_HTTPS
+  </Macro>
+  ```
+  ```
+    # We only added those lines in each princess vhost
+    Use ForceSsl
+    Use HstsHeader 3600
+  ```
+
+Prod environment remained unchanged.  
+
 Everybody who wants to deploy a feature in production (several times a day) must test it first on Princess. So, everybody was testing HTTPS on Princess without thinking about it during several days.
 
 Our team (Core team) and our QA team had also tested HTTPS during all the process.
 
 ### Activation on production (for admin only)
 
-After 1 week of tests on Princess, we decided to enable the feature on production but just for the admins.  
-So, when someone was detected as being an admin and was surfing on HTTP, he was automatically redirected to HTTPS by the application layer.
+After one week of tests on Princess, we decided to enable the feature on production but just for the admins.  
+So, when someone was detected as being an admin and was surfing on HTTP, he was automatically redirected to HTTPS by the application layer.  
+
+We used a listener which was plugged on the Symfony onKernelRequest event.  
+It looked like:
+
+```php
+<?php
+
+// SecuredRequestSchemeListener.php
+
+class SecuredRequestSchemeListener implements EventSubscriberInterface
+{
+    /** @var SecurityContextInterface */
+    private $context;
+
+    /** @var string */
+    private $env;
+
+    /**
+     * @param SecurityContextInterface $context
+     * @param string                   $env
+     */
+    public function __construct(SecurityContextInterface $context, $env = null)
+    {
+        $this->context = $context;
+        $this->env     = $env;
+    }
+
+    /**
+     * @param GetResponseEvent $event
+     * @return RedirectResponse|null
+     */
+    public function onKernelRequest(GetResponseEvent $event)
+    {
+        $request = $event->getRequest();
+
+        if ($this->context->isGranted('ROLE_ADMIN') && false === $request->isSecure()) {
+            $event->setResponse(new RedirectResponse($this->forgeHttpsResponseUrl($request)));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            KernelEvents::REQUEST => ['onKernelRequest', KernelRequestListenerPriorities::FIREWALL],
+        ];
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    private function forgeHttpsResponseUrl(Request $request)
+    {
+        return sprintf('https://%s', $request->getHost() . $request->getRequestUri());
+    }
+}
+```
+
+And the service definition was:  
+
+```yaml
+<service id="alittle.security.secured_request_scheme_listener" class="ALittle\EventListener\SecuredRequestSchemeListener">
+    <argument type="service" id="security.context"/>
+    <argument>%kernel.environment%</argument>
+    <tag name="kernel.event_subscriber" />
+</service>
+```
+
+Thanks to the "trick" used to define `HTTP_PATH_APP_DOMAIN_NAME` constant, after a first redirection from HTTP to HTTPS, admins stayed in HTTPS during their entire session, even on the oldest pages.
 
 ### Activation for everybody application by application
 
@@ -218,11 +320,11 @@ Quickly, Google stopped crawling our sites using HTTP in favor of HTTPS
 ### Traffic disturbances
 
 **Three months after the switch, our traffic from Google recovered to its normal trend.**  
-E-commerce sites migrating from HTTP to HTTPS can lose 40% of their traffic during several months. A little Market and A little Mercerie lost much less traffic and only for three months.  
+E-commerce sites migrating from HTTP to HTTPS can lose 40% of their traffic during several months. A little Market and A little Mercerie lost much less traffic and only for three months. As you can see on the graph below, the impact of the HTTPS migration on SEO traffic was not significant.  
 
 {:.text-center}
 ![Google Analytics](/assets/https-securise-websites/seo-traffic-over-time.png)
-*According to Google Analytics the impact on SEO traffic was not significant*
+*According to Google Analytics SEO traffic slightly decreased*
 
 **Etsy France's technical team successfully performed that big challenge thanks to several measures including SEO.**
 
