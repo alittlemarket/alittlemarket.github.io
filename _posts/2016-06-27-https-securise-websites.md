@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How Etsy France migrated all its sites to HTTPS"
-date:   2016-07-15
+date:   2016-07-27
 categories: projects
 tags: [security, https, http, migration, project]
 author: antoine
