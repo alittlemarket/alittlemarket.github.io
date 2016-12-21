@@ -26,6 +26,13 @@ authors:
     github: antfroger
     # does not appear on the team page
     active: false
+  alexandrine:
+    name: Alexandrine Boissière
+    display_name: Alexandrine
+    avatar: https://avatars0.githubusercontent.com/u/92213?v=3&s=400
+    email: alexandrine@alittlemarket.fr
+    twitter: theasta
+    github: theasta
   arnaud:
     name: Arnaud Pflieger
     display_name: Arnaud
@@ -34,7 +41,7 @@ authors:
     twitter: ArnaudPflieger
     github: apflieger
   celine:
-    name: Celine Coelho
+    name: Céline Coelho
     display_name: Celine
     avatar: https://avatars0.githubusercontent.com/u/8169949?v=3&s=400
     email: celine@alittlemarket.fr
@@ -110,6 +117,13 @@ authors:
     email: thierry@alittlemarket.fr
     twitter: sitesAlittle
     github: thierrygerbeau
+  theophile:
+    name: Théophile Gilbert
+    display_name: Théophile
+    avatar: https://github.alittlecorp.com/avatars/u/118?s=460
+    email: theophile@alittlemarket.fr
+    twitter: sitesAlittle
+    github: alittletheo
   vincent:
     name: Vincent Paulin
     display_name: Vincent
