@@ -19,6 +19,6 @@ Etsy France's tech blog
     git clone git@github.com:alittlemarket/alittlemarket.github.io.git
     cd alittlemarket.github.io.git
     bundle install 
-    jekyll serve --watch
+    bundle exec jekyll serve --watch
     # Dev blog is available at http://localhost:4000
 ```
