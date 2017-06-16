@@ -6,7 +6,7 @@ Etsy France's tech blog
 
 * ruby version >= 2.2.2
 * [Bundler](http://bundler.io/)
-* [Jelyll](https://jekyllrb.com/)
+* [Jekyll](https://jekyllrb.com/)
 
 ```shell
 	gem install bundler
